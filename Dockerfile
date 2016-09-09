@@ -15,7 +15,7 @@ WORKDIR /usr/src/inventory-app
 
 COPY . /usr/src/inventory-app
 
-EXPOSE 80
+EXPOSE 80 3000
 
 RUN npm install
 
