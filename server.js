@@ -1,15 +1,22 @@
 'use strict';
 
-const express = require('express');
+const Hapi = require('hapi');
 
-// Constants
-const PORT = 80;
+const server = new Hapi.Server();
+server.connection({ port: 3000 });
 
-// App
-const app = express();
-app.get('/', function (req, res) {
-    res.send('Hello world\n');
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        reply('Hello, world!');
+    }
 });
 
-app.listen(PORT);
-console.log('Running on http://localhost:' + PORT);
+server.start((err) => {
+
+    if (err) {
+        throw err;
+    }
+    console.log(`Server running at: ${server.info.uri}`);
+});
