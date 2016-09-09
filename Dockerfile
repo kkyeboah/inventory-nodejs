@@ -2,6 +2,9 @@ FROM node:6
 
 MAINTAINER "Kelvin" <kelvinkyeboah@gmail.com>
 
+# default is 'dumb'. that cripples less, vim, coloring, et al
+ENV TERM xterm-256color
+
 RUN apt-get update \
     && apt-get install -y \
         vim-tiny \
