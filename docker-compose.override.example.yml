@@ -1,0 +1,6 @@
+inventory-app:
+  build: .
+  ports:
+      - 80:80
+  volumes:
+      - .:/usr/src/inventory-app
