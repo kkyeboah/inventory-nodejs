@@ -1,22 +1,30 @@
 'use strict';
 
 const Hapi = require('hapi');
+const Joi = require('joi');
+const mongoose = require('mongoose');
+
+const Routes = require('./routes');
 
 const server = new Hapi.Server();
-server.connection({ port: 3000 });
+server.connection({ port: process.env.PORT || 3000 });
 
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-        reply('Hello, world!');
+const dbUrl = 'mongodb://localhost/inventory-node' || process.env.MONGODB;
+
+server.route(Routes);
+mongoose.Promise = global.Promise;
+
+mongoose.connect(dbUrl, {}, (mongooseErr) => {
+    if (mongooseErr) {
+        throw mongooseErr;
+    } else {
+        server.start(function (err) {
+
+            if (err) {
+                throw err;
+            }
+            console.log(`Server running at: ${server.info.uri}`);
+        });
     }
 });
 
-server.start((err) => {
-
-    if (err) {
-        throw err;
-    }
-    console.log(`Server running at: ${server.info.uri}`);
-});

@@ -8,7 +8,10 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "hapi": "^15.0.3"
+    "boom": "^4.0.0",
+    "hapi": "^15.0.3",
+    "joi": "^9.0.4",
+    "mongoose": "^4.6.0"
   },
   "repository": {
     "type": "git",
