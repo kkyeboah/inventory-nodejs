@@ -4,3 +4,7 @@ inventory-app:
       - 3000:3000
   volumes:
       - .:/usr/src/inventory-app
+
+mongodb:
+  ports:
+      - 27017:27017
