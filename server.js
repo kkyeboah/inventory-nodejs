@@ -1,8 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
-const Joi = require('joi');
 const mongoose = require('mongoose');
+const populate = require('./populate');
 
 const Routes = require('./routes');
 
@@ -25,6 +25,7 @@ mongoose.connect(dbUrl, {}, (mongooseErr) => {
             }
             console.log(`Server running at: ${server.info.uri}`);
         });
+        populate();
     }
 });
 

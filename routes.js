@@ -9,23 +9,26 @@
 const Joi = require('joi');
 const Boom = require('boom');
 const Item = require('./model');
-
-const itemszzz = [
-    {
-        _id: 1,
-        name: "Item 1",
-    },
-    {
-        _id: 2,
-        name: "Item 2",
-    }, {
-        _id: 3,
-        name: "Item 3",
-    }
-]
-
+const faker = require('faker');
 
 module.exports = [
+    {
+        method: 'POST',
+        path: '/api/populate/{number}',
+        config: {
+            handler: function (request, reply) {
+                for(var i = 0; i < request.params.number; i++) {
+                    let newItem = new Item({
+                        "name": faker.commerce.productName(),
+                        "price": faker.commerce.price(),
+                        "description": faker.lorem.sentence(),
+                        "stock": faker.random.number()
+                    });
+                    newItem.save();
+                }
+            }
+        }
+    },
     {
         method: 'GET',
         path: '/api/items',
