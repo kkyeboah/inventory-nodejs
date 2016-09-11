@@ -9,7 +9,7 @@ const Routes = require('./routes');
 const server = new Hapi.Server();
 server.connection({ port: process.env.PORT || 3000 });
 
-const dbUrl = process.env.MONGODB || 'mongodb://mongodb/inventory-node';
+const dbUrl = process.env.MONGODB || 'mongodb://localhost/inventory-node';
 
 server.route(Routes);
 mongoose.Promise = global.Promise;

@@ -2,8 +2,6 @@ inventory-app:
   build: .
   links:
       - mongodb
-  environment:
-      MONGODB: 'mongodb://mongodb/inventory-node'
 
 mongodb:
   image: mongo:3.0.12
